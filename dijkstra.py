@@ -11,8 +11,8 @@ plt.rcParams.update({
 
 G = {
     "A": [("B", 2), ("C", 8)],
-    "B": [("C", 1), ("D", 6)],
-    "C": [("D", 4), ("E", 1)],
+    "B": [("C", 1), ("D", 5)],
+    "C": [("D", 5), ("E", 1)],
     "D": [],
     "E": [("D", 2)],
 }
@@ -57,6 +57,10 @@ for v in pos:
         y += .1
     T[v] = ax.text(x - .05, y, dist_to_str(dist[v]))
 
+def set_vertex_color(v, color):
+    T[v].set_color(color)
+    P[v].set_color(color)
+
 def dijkstra():
     yield
     while True:
@@ -68,24 +72,19 @@ def dijkstra():
             yield
             continue
         vus[v_min] = True
-        T[v_min].set_color("red")
-        P[v_min].set_color("red")
+        set_vertex_color(v_min, "red")
         yield
         for v, w in G[v_min]:
             A[(v_min, v)].set_color("red")
             yield
-            modif = False
             if dist[v_min] + w < dist[v]:
                 dist[v] = dist[v_min] + w
                 T[v].set_text(dist_to_str(dist[v]))
+                set_vertex_color(v, "red")
                 yield
-                modif = True
-            if modif:
-                A[(v_min, v)].set_color("green")
-            else:
-                A[(v_min, v)].set_color("black")
-        T[v_min].set_color("green")
-        P[v_min].set_color("green")
+                set_vertex_color(v, "black")
+            A[(v_min, v)].set_color("black")
+        set_vertex_color(v_min, "green")
         yield
 
 dij = dijkstra()
