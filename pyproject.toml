@@ -6,7 +6,6 @@ authors = ["Quentin Fortier <qpfortier@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-networkx = "^2.5"
 matplotlib = "^3.3.4"
 
 [tool.poetry.dev-dependencies]
