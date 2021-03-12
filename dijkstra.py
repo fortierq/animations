@@ -1,32 +1,12 @@
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
+from utils import new_ax
+from graph import G, pos
 
-plt.rcParams.update({
-    "text.usetex": True,
-    "font.family": "sans-serif",
-    "font.sans-serif": ["Helvetica"],
-    "font.size": 28,
-})
+plt.style.use(".mplstyle")
 
-G = {
-    "A": [("B", 2), ("C", 8)],
-    "B": [("C", 1), ("D", 5)],
-    "C": [("D", 5), ("E", 1)],
-    "D": [],
-    "E": [("D", 2)],
-}
-pos = {
-    "A": (0, 0),
-    "B": (0, 2),
-    "C": (2, 0),
-    "D": (2, 2),
-    "E": (3, 1),
-}
-
-fig, ax = plt.subplots()
-ax.set_facecolor('white')
-ax.axis('off')
+fig, ax = new_ax()
 
 dist = { v: float("inf") for v in G }
 vus = { v: False for v in G }
@@ -44,14 +24,13 @@ for u in G:
         A[(u, v)] = ax.arrow(pos[u][0], pos[u][1], pos[v][0] - pos[u][0], pos[v][1] - pos[u][1],
                             length_includes_head=True,
                             head_width=.09,
-                            width=.012,
                             color="black")
         ax.text((pos[u][0] + pos[v][0])/2, (pos[u][1] + pos[v][1])/2 + .05, str(w)) 
 
 for v in pos:
     x, y = pos[v]
     P[v] = ax.scatter(x, y, s=150, color="black")
-    if y < .5:
+    if y < .2:
         y -= .3
     else:
         y += .1
@@ -91,6 +70,6 @@ dij = dijkstra()
 def update(i):
     next(dij)
 
-anim = FuncAnimation(fig, update, frames=25, interval=1200, blit=False)
-anim.save('dijkstra.gif', dpi=200)
+anim = FuncAnimation(fig, update, frames=20, interval=1200, blit=False)
+anim.save('dijkstra.gif', dpi=200, bitrate=20)
 # HTML(anim.to_html5_video())
