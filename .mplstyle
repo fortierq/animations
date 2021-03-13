@@ -2,5 +2,8 @@ text.usetex: True
 font.family: "sans-serif"
 font.sans-serif: ["Helvetica"]
 font.size: 30
+
 lines.linewidth: 50
+lines.markersize: 16
+
 patch.linewidth: 2
