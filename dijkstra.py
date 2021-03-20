@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from IPython.display import HTML
-from utils import new_ax
+from utils import html5, new_ax
 from graph import G, pos
 
 plt.style.use(".mplstyle")
@@ -41,7 +41,7 @@ def set_vertex_color(v, color):
     P[v].set_color(color)
 
 def set_arc_color(u, v, color):
-    A[(u, v)].set_color("red")
+    A[(u, v)].set_color(color)
     T[v].set_color(color)
 
 def dijkstra():
@@ -52,8 +52,7 @@ def dijkstra():
             if not vus[v] and (v_min == -1 or dist[v] < dist[v_min]):
                 v_min = v
         if v_min == -1:
-            yield
-            continue
+            return None
         vus[v_min] = True
         set_vertex_color(v_min, "red")
         yield
@@ -70,13 +69,6 @@ def dijkstra():
         set_vertex_color(v_min, "green")
         yield
 
-dij = dijkstra()
-def update(i):
-    next(dij)
-
-anim = FuncAnimation(fig, update, frames=30, interval=1200, blit=False)
-# anim.save('dijkstra.gif', dpi=200, bitrate=20)
-# HTML(anim.to_html5_video())
-with open("dijkstra.html", "w") as f:
-    print(anim.to_html5_video(), file=f)
-
+anim = FuncAnimation(fig, lambda _: None, frames=dijkstra, interval=1200, blit=False)
+# anim.save('dijkstra.gif', dpi=200)
+html5(anim, "dijkstra.html")
