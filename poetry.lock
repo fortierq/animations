@@ -1,4 +1,15 @@
 [[package]]
+name = "celluloid"
+version = "0.2.0"
+description = "Easy matplotlib animation."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+matplotlib = "*"
+
+[[package]]
 name = "cycler"
 version = "0.10.0"
 description = "Composable style cycles"
@@ -79,9 +90,13 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "6b6bdeac5fe8167bb36df0bbdc8d8b82f82383aadd3b320dc4f0919adff55173"
+content-hash = "b3b3c4cb670bc0bbffb9832eef3d9e5f4cd10d08194dd36799d80cb09b1bdffa"
 
 [metadata.files]
+celluloid = [
+    {file = "celluloid-0.2.0-py3-none-any.whl", hash = "sha256:5cebd41276d9658f7667a2f1f565f566763a6110273b4af35c958b1407a9f277"},
+    {file = "celluloid-0.2.0.tar.gz", hash = "sha256:568b1512c4a97483759e9436c3f3e5dc5566da350179aa1872992ec8d82706e1"},
+]
 cycler = [
     {file = "cycler-0.10.0-py2.py3-none-any.whl", hash = "sha256:1d8a5ae1ff6c5cf9b93e8811e581232ad8920aeec647c37316ceac982b08cb2d"},
     {file = "cycler-0.10.0.tar.gz", hash = "sha256:cd7b2d1018258d7247a71425e9f26463dfb444d411c39569972f4ce586b0c9d8"},
