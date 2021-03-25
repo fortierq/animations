@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "entpe"
+name = "animations"
 version = "0.1.0"
 description = ""
 authors = ["Quentin Fortier <qpfortier@gmail.com>"]
